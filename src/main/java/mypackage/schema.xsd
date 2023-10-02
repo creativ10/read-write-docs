@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xd="http://www.w3.org/2001/XMLSchema">
+    <xs:simpleType name="docType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SIMPLE"/>
+            <xs:enumeration value="COMPLEX"/>
+            <xs:enumeration value="DISCOUNTED"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="Sender">
+        <xs:sequence>
+            <xs:element name="fiscalCode" type="xs:string"/>
+            <xs:element name="companyName" type="xs:string"/>
+            <xs:element name="address" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Receiver">
+        <xs:sequence>
+            <xs:element name="fiscalCode" type="xs:string"/>
+            <xs:element name="companyName" type="xs:string"/>
+            <xs:element name="address" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Header">
+        <xs:sequence>
+            <xd:element name="Sender" type="Sender"/>
+            <xd:element name="Receiver" type="Receiver"/>
+            <xs:element type="xs:date" name="date"/>
+            <xs:element type="xs:positiveInteger" name="billNumber"/>
+            <xs:element name="docType" type="docType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Footer">
+        <xs:sequence>
+            <xs:element name="summationWithoutDDV">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="summationWithDDV">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="summation" >
+                <xs:simpleType>
+                    <xs:restriction base="xs:double">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="item">
+           <xs:sequence>
+               <xs:element type="xs:string" name="itemName"/>
+               <xs:element type="xs:positiveInteger" name="quantity"/>
+               <xs:element type="xs:double" name="price" />
+               <xs:element name="ddv" default="0.095">
+                   <xs:simpleType>
+                       <xs:restriction base="xs:double">
+                           <xs:minInclusive value="0"/>
+                           <xs:maxInclusive value="1"/>
+                       </xs:restriction>
+                   </xs:simpleType>
+               </xs:element>
+               <xs:element name="discount" default="1.0">
+                   <xs:simpleType>
+                       <xs:restriction base="xs:double">
+                           <xs:minInclusive value="0"/>
+                           <xs:maxInclusive value="1"/>
+                       </xs:restriction>
+                   </xs:simpleType>
+               </xs:element>
+           </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Rate">
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="item" type="item"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Bill">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Header" type="Header"/>
+                <xs:element name="Footer" type="Footer"/>
+                <xs:element name="Rate" type="Rate" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

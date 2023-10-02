@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Bill>
+    <Header>
+        <Sender>
+            <fiscalCode>1234</fiscalCode>
+            <companyName>testing</companyName>
+            <address>testing 123</address>
+        </Sender>
+        <Receiver>
+            <fiscalCode>1234</fiscalCode>
+            <companyName>testing</companyName>
+            <address>testing 123</address>
+        </Receiver>
+        <date>
+            2023-05-24
+        </date>
+        <billNumber>
+            12
+        </billNumber>
+        <docType>COMPLEX</docType>
+    </Header>
+    <Rate>
+        <itemName>testing</itemName>
+        <quantity>
+            10
+        </quantity>
+        <price>
+            20.3
+        </price>
+        <ddv/>
+        <discount/>
+    </Rate>
+    <Rate>
+        <item>
+            <itemName>testing</itemName>
+            <quantity>
+                10
+            </quantity>
+            <price>
+                20.3
+            </price>
+            <ddv>
+                0.1
+            </ddv>
+            <discount/>
+        </item>
+        <item>
+            <itemName>testing</itemName>
+            <quantity>
+                10
+            </quantity>
+            <price>
+                20.3
+            </price>
+            <ddv/>
+            <discount/>
+        </item>
+    </Rate>
+</Bill>

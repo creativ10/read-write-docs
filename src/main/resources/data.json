@@ -1,0 +1,41 @@
+{
+  "Header":{
+    "Sender":{
+      "fiscalCode":"1230",
+      "companyName": "testing",
+      "address": "testing 23"
+    },
+    "Receiver":{
+      "fiscalCode":"1230",
+      "companyName": "testing",
+      "address": "testing 23"
+    },
+    "date": "2023-05-24",
+    "billNumber": 1230,
+    "docType": "SIMPLE"
+  },
+  "Rate":{
+    "item":[
+      {
+        "itemName": "testing",
+        "quantity": 10,
+        "price": 20.3
+      },
+      {
+        "itemName": "testing",
+        "quantity": 10,
+        "price": 20.3
+      },
+      {
+        "itemName": "testing",
+        "quantity": 10,
+        "price": 20.3
+      },
+      {
+        "itemName": "testing",
+        "quantity": 10,
+        "price": 20.3
+      }
+    ]
+  }
+}
